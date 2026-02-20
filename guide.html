@@ -6,6 +6,81 @@
   <title>使用說明 — UrKeyboard</title>
   <meta name="description" content="UrKeyboard 完整使用說明，包含初次設定、輸入方式、效率工具、外觀主題、Pro 功能及常見問題。">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .accordion-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-size: 15px;
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+    .accordion-trigger:hover {
+      color: var(--primary);
+    }
+    .accordion-icon {
+      flex-shrink: 0;
+      margin-left: 8px;
+      font-size: 18px;
+      color: var(--text-secondary);
+      transition: transform 0.25s ease;
+    }
+    .accordion-item.open .accordion-icon {
+      transform: rotate(180deg);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .accordion-item.open .accordion-content {
+      max-height: 3000px;
+    }
+    .accordion-body {
+      padding: 4px 4px 20px;
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .accordion-body h2 { display: none; }
+    .accordion-body h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 16px 0 8px;
+      color: var(--text-primary);
+    }
+    .accordion-body ul,
+    .accordion-body ol {
+      padding-left: 20px;
+      margin: 6px 0;
+    }
+    .accordion-body li { margin: 4px 0; }
+    .accordion-body p { margin: 8px 0; }
+    .accordion-body table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 10px 0;
+    }
+    .accordion-body th,
+    .accordion-body td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .accordion-body th {
+      background: var(--surface);
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
 
@@ -53,79 +128,689 @@
 
   <!-- 文章目錄 -->
   <h2 class="section-title">完整說明文章</h2>
-  <p class="section-subtitle">詳細的操作說明，點擊標題在 APP 說明中心查閱</p>
+  <p class="section-subtitle">點擊標題展開詳細說明</p>
 
   <!-- 基本設定 -->
   <div class="guide-category">
     <div class="guide-category-title">基本設定</div>
-    <ul class="guide-list">
-      <li><a href="#">如何啟用 UrKeyboard</a></li>
-      <li><a href="#">如何設為預設輸入法</a></li>
-      <li><a href="#">如何載入輸入法字典</a></li>
-      <li><a href="#">支援哪些輸入法字典</a></li>
-      <li><a href="#">如何更換輸入法字典</a></li>
-      <li><a href="#">重新顯示設定導覽</a></li>
-    </ul>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>如何啟用 UrKeyboard</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>如何啟用 UrKeyboard</h2>
+        <p>使用 UrKeyboard 之前，需要先在系統設定中啟用它。</p>
+        <h3>操作步驟</h3>
+        <ol>
+          <li>打開手機的「<b>設定</b>」應用程式</li>
+          <li>前往「<b>一般管理</b>」或「<b>語言與輸入法</b>」</li>
+          <li>點擊「<b>螢幕鍵盤</b>」或「<b>虛擬鍵盤</b>」</li>
+          <li>點擊「<b>管理鍵盤</b>」</li>
+          <li>找到「UrKeyboard」並將開關<b>打開</b></li>
+          <li>系統會彈出安全性提示，點擊「<b>確定</b>」</li>
+        </ol>
+        <h3>注意事項</h3>
+        <ul>
+          <li>不同 Android 版本的設定路徑可能略有不同</li>
+          <li>啟用後，還需要將 UrKeyboard 設為預設輸入法才能使用</li>
+          <li>若找不到選項，可嘗試在設定中搜尋「輸入法」</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>如何設為預設輸入法</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>如何設為預設輸入法</h2>
+        <p>啟用後，還需要將 UrKeyboard 設定為預設輸入法，才能在所有 App 中使用。</p>
+        <h3>操作步驟</h3>
+        <ol>
+          <li>打開手機的「<b>設定</b>」應用程式</li>
+          <li>前往「<b>一般管理</b>」→「<b>語言與輸入法</b>」</li>
+          <li>點擊「<b>預設鍵盤</b>」或「<b>目前鍵盤</b>」</li>
+          <li>從清單中選擇「<b>UrKeyboard</b>」</li>
+        </ol>
+        <h3>快速切換</h3>
+        <p>您也可以在任何輸入框中，長按<b>空白鍵</b>或點擊輸入框右下角的<b>鍵盤圖示</b>來切換輸入法。</p>
+        <h3>注意事項</h3>
+        <ul>
+          <li>若未看到 UrKeyboard，請先確認已完成「啟用」步驟</li>
+          <li>每次重新啟動後，設定都會保留</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>如何載入輸入法字典</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>如何載入輸入法字典</h2>
+        <p>UrKeyboard 支援 .cin 格式的輸入法字典。首次使用時必須載入至少一個字典才能開始打字。</p>
+        <h3>什麼是字典？</h3>
+        <p>字典（.cin 檔案）是一個「字根 → 中文字」的對應表，定義了您按下哪些按鍵可以輸出哪些中文字。不同輸入法（注音、行列、倉頡等）使用不同的字典。</p>
+        <h3>從列表選擇（推薦）</h3>
+        <ol>
+          <li>開啟 UrKeyboard 應用程式</li>
+          <li>進入「<b>設定</b>」→「<b>輸入法字典選擇</b>」</li>
+          <li>從清單中點擊您要使用的輸入法名稱</li>
+          <li>等待字典載入完成（首次可能需要數秒）</li>
+        </ol>
+        <h3>手動匯入（進階）</h3>
+        <ol>
+          <li>取得 .cin 格式的字典檔案</li>
+          <li>使用檔案管理器將檔案複製到手機儲存空間</li>
+          <li>進入「<b>設定</b>」→「<b>手動匯入字典</b>」</li>
+          <li>找到並選擇您的 .cin 檔案</li>
+        </ol>
+        <h3>注意事項</h3>
+        <ul>
+          <li>一次只能載入一個字典</li>
+          <li>載入新字典後，舊字典會被取代</li>
+          <li>若字典載入失敗，請確認 .cin 檔案格式正確</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>支援哪些輸入法字典</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>支援哪些輸入法字典</h2>
+        <p>UrKeyboard 內建多種常用輸入法字典，也支援自訂 .cin 格式字典。</p>
+        <h3>內建字典</h3>
+        <table>
+          <tr><th>輸入法</th><th>適合對象</th></tr>
+          <tr><td><b>注音</b></td><td>使用注音符號輸入的用戶（台灣最常見）</td></tr>
+          <tr><td><b>行列</b></td><td>使用行列 30 輸入法的用戶</td></tr>
+          <tr><td><b>全尺寸</b></td><td>喜好完整鍵盤佈局的用戶</td></tr>
+          <tr><td><b>五排</b></td><td>使用五排按鍵佈局的用戶</td></tr>
+          <tr><td><b>31 鍵</b></td><td>使用 31 鍵佈局的用戶</td></tr>
+        </table>
+        <h3>自訂字典</h3>
+        <p>您也可以匯入符合 .cin 格式的自訂字典。.cin 格式是一種廣泛使用的輸入法定義格式，網路上有許多現成資源可下載。</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>如何更換輸入法字典</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>如何更換輸入法字典</h2>
+        <p>您可以隨時切換到不同的輸入法字典。</p>
+        <h3>操作步驟</h3>
+        <ol>
+          <li>開啟 UrKeyboard 應用程式</li>
+          <li>進入「<b>設定</b>」→「<b>輸入法字典選擇</b>」</li>
+          <li>點擊您想切換的字典名稱</li>
+          <li>字典載入完成後，鍵盤即刻套用新字典</li>
+        </ol>
+        <p><b>注意：</b>切換字典後，目前正在輸入的內容會被清除。</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>重新顯示設定導覽</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>重新顯示設定導覽</h2>
+        <p>如果您想再次查看初次設定的引導流程，可以從設定頁面重新觸發。</p>
+        <h3>操作步驟</h3>
+        <ol>
+          <li>開啟 UrKeyboard 應用程式</li>
+          <li>進入「<b>設定</b>」</li>
+          <li>在「其他與關於」分類中，點擊「<b>重新顯示設定導覽</b>」</li>
+          <li>設定導覽將從頭開始</li>
+        </ol>
+      </div></div>
+    </div>
   </div>
 
   <!-- 輸入方式 -->
   <div class="guide-category">
     <div class="guide-category-title">輸入方式</div>
-    <ul class="guide-list">
-      <li><a href="#">中英文輸入切換</a></li>
-      <li><a href="#">候選字的使用方式</a></li>
-      <li><a href="#">打繁出簡功能</a></li>
-      <li><a href="#">空白鍵游標控制</a></li>
-      <li><a href="#">滑動選取文字</a></li>
-    </ul>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>中英文輸入切換</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>中英文輸入切換</h2>
+        <p>UrKeyboard 支援快速在中文模式與英文模式之間切換。</p>
+        <h3>操作方法</h3>
+        <ul>
+          <li><b>點擊「中/英」鍵</b>：鍵盤左下角的模式切換鍵，點一下即可切換</li>
+          <li>切換後，鍵盤上方的候選列會相應變化</li>
+          <li>英文模式下，直接輸入拉丁字母</li>
+        </ul>
+        <h3>狀態辨識</h3>
+        <p>可從「中/英」鍵的顯示文字判斷目前模式：</p>
+        <ul>
+          <li>顯示「<b>中</b>」→ 目前為中文輸入模式</li>
+          <li>顯示「<b>英</b>」→ 目前為英文輸入模式</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>候選字的使用方式</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>候選字的使用方式</h2>
+        <p>輸入字根後，鍵盤上方的候選列會顯示對應的中文字或詞組。</p>
+        <h3>基本操作</h3>
+        <ul>
+          <li><b>點擊候選字</b>：直接選取該字/詞輸出</li>
+          <li><b>左右滑動候選列</b>：瀏覽更多候選字，支援慣性滾動</li>
+          <li><b>第一個候選字</b>：通常以粗體顯示，為最常用的選擇</li>
+        </ul>
+        <h3>智慧連續輸入</h3>
+        <p>開啟「連續輸入」功能後，UrKeyboard 會自動根據上下文斷詞，讓您不需要每個字單獨選取，大幅提升輸入速度。</p>
+        <h3>候選列功能鍵</h3>
+        <ul>
+          <li><b>剪貼簿圖示</b>：開啟剪貼簿歷史</li>
+          <li><b>詞庫頁籤</b>：顯示自訂詞庫快速輸出</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>打繁出簡功能</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>打繁出簡功能</h2>
+        <p>「打繁出簡」讓您以繁體中文的方式輸入，但自動將輸出的文字轉換為簡體中文，方便對岸溝通。</p>
+        <h3>啟用方法</h3>
+        <ol>
+          <li>在鍵盤上找到「<b>簡</b>」功能鍵</li>
+          <li>點擊後即啟用打繁出簡模式</li>
+          <li>再次點擊即關閉，回到繁體輸出</li>
+        </ol>
+        <h3>使用情境</h3>
+        <ul>
+          <li>與中國大陸朋友或同事溝通</li>
+          <li>填寫需要簡體中文的表單</li>
+          <li>使用中國大陸的 App 時輸入文字</li>
+        </ul>
+        <p><b>注意：</b>此功能只轉換輸出的文字，您的輸入習慣（字根）不需要改變。</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>空白鍵游標控制</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>空白鍵游標控制</h2>
+        <p>在空白鍵上滑動可以精確移動文字輸入游標，不需要放大鏡或精確點擊。</p>
+        <h3>操作方法</h3>
+        <ul>
+          <li><b>向左滑動空白鍵</b>：游標向左移動一格</li>
+          <li><b>向右滑動空白鍵</b>：游標向右移動一格</li>
+          <li>滑動速度越快，游標移動越快</li>
+        </ul>
+        <h3>使用場景</h3>
+        <ul>
+          <li>需要修改長文字中間的錯字</li>
+          <li>在小螢幕上精確定位游標</li>
+          <li>不想中斷輸入流程的快速游標調整</li>
+        </ul>
+        <p><b>提示：</b>此功能在候選字選取狀態下同樣有效。</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>滑動選取文字</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>滑動選取文字</h2>
+        <p>UrKeyboard 支援透過鍵盤上的滑動手勢來選取文字範圍，無需精確點擊文字。</p>
+        <h3>操作方法</h3>
+        <ol>
+          <li>長按鍵盤任意按鍵</li>
+          <li>保持按壓並滑動</li>
+          <li>滑動方向決定選取範圍</li>
+          <li>放開手指完成選取</li>
+        </ol>
+        <h3>選取後的操作</h3>
+        <ul>
+          <li>選取文字後可直接貼上替換</li>
+          <li>系統剪貼簿工具列會出現複製/剪下選項</li>
+        </ul>
+      </div></div>
+    </div>
   </div>
 
   <!-- 效率工具 -->
   <div class="guide-category">
     <div class="guide-category-title">效率工具</div>
-    <ul class="guide-list">
-      <li><a href="#">剪貼簿歷史功能</a></li>
-      <li><a href="#">自訂詞庫的使用</a></li>
-      <li><a href="#">表情符號（Emoji）輸入</a></li>
-      <li><a href="#">分離鍵盤操作</a></li>
-    </ul>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>剪貼簿歷史功能</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>剪貼簿歷史功能</h2>
+        <p>UrKeyboard 會自動記錄您最近複製的內容，讓您隨時快速貼上之前複製過的文字。</p>
+        <h3>開啟方式</h3>
+        <ul>
+          <li>點擊候選列左側的<b>剪貼簿圖示</b></li>
+          <li>剪貼簿面板會展開在候選列下方</li>
+        </ul>
+        <h3>基本操作</h3>
+        <ul>
+          <li><b>點擊項目</b>：直接貼上該內容</li>
+          <li><b>左右滑動</b>：瀏覽更多剪貼簿記錄</li>
+          <li><b>長按項目</b>：顯示更多選項（加入詞庫、刪除等）</li>
+        </ul>
+        <h3>清除記錄</h3>
+        <ul>
+          <li>長按單筆記錄選擇刪除</li>
+          <li>或在剪貼簿面板中選擇「清除全部」</li>
+        </ul>
+        <h3>隱私提醒</h3>
+        <p>剪貼簿記錄只儲存在您的裝置本機，UrKeyboard 不會上傳您的剪貼簿內容到伺服器。</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>自訂詞庫的使用</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>自訂詞庫的使用</h2>
+        <p>自訂詞庫讓您儲存常用的詞語、片語或文字模板，需要時一鍵輸出。</p>
+        <h3>新增到詞庫</h3>
+        <ol>
+          <li>複製您想儲存的文字</li>
+          <li>開啟剪貼簿面板</li>
+          <li><b>長按</b>剪貼簿中的項目</li>
+          <li>選擇「<b>加入詞庫</b>」</li>
+        </ol>
+        <h3>使用詞庫輸出</h3>
+        <ol>
+          <li>點擊候選列上的「<b>詞庫</b>」頁籤</li>
+          <li>瀏覽或搜尋您想輸出的詞條</li>
+          <li>點擊詞條即可直接輸出</li>
+        </ol>
+        <h3>管理詞庫</h3>
+        <ul>
+          <li>前往「<b>設定</b>」→「<b>自定義詞庫</b>」</li>
+          <li>可以新增、編輯或刪除詞條</li>
+          <li>支援快捷碼（輸入特定字根後自動出現）</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>表情符號（Emoji）輸入</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>表情符號（Emoji）輸入</h2>
+        <p>UrKeyboard 內建 Emoji 面板，讓您快速瀏覽與輸入各種表情符號。</p>
+        <h3>進入 Emoji 模式</h3>
+        <ul>
+          <li>點擊鍵盤上的「<b>繪</b>」鍵（通常位於鍵盤角落）</li>
+          <li>Emoji 面板會取代鍵盤顯示</li>
+        </ul>
+        <h3>瀏覽與輸入</h3>
+        <ul>
+          <li><b>分類瀏覽</b>：左右滑動或點擊頂部分類圖示切換分類</li>
+          <li><b>搜尋</b>：輸入關鍵字（如「笑」、「心」）搜尋相關 Emoji</li>
+          <li><b>點擊輸入</b>：點擊任意 Emoji 即可輸入到目前游標位置</li>
+        </ul>
+        <h3>離開 Emoji 模式</h3>
+        <ul>
+          <li>點擊鍵盤面板中的「<b>ᴬʙᴄ</b>」或返回按鍵</li>
+          <li>點擊任意輸入框外的區域</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>分離鍵盤操作</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>分離鍵盤操作</h2>
+        <p>分離鍵盤模式將鍵盤分為左右兩半，適合雙手握持平板或大螢幕手機時使用。</p>
+        <h3>啟用分離模式</h3>
+        <ul>
+          <li><b>點擊分離圖示</b>：在鍵盤上找到分離/合併圖示並點擊</li>
+          <li><b>捏合手勢</b>：在鍵盤上以雙指向外展開（需在設定中啟用捏合手勢）</li>
+        </ul>
+        <h3>關閉分離模式</h3>
+        <ul>
+          <li><b>點擊合併圖示</b>：再次點擊分離/合併圖示</li>
+          <li><b>捏合手勢</b>：在鍵盤上以雙指向內合攏</li>
+        </ul>
+        <h3>設定選項</h3>
+        <p>前往「<b>設定</b>」→「<b>大螢幕與平板設定</b>」可調整：</p>
+        <ul>
+          <li>是否啟用分離鍵盤</li>
+          <li>是否啟用切換動畫</li>
+          <li>是否啟用捏合手勢</li>
+        </ul>
+      </div></div>
+    </div>
   </div>
 
   <!-- 外觀主題 -->
   <div class="guide-category">
     <div class="guide-category-title">外觀主題</div>
-    <ul class="guide-list">
-      <li><a href="#">內建主題介紹與切換</a></li>
-      <li><a href="#">主題編輯器使用指南</a></li>
-      <li><a href="#">主題商店與社群主題</a></li>
-      <li><a href="#">字型選擇</a></li>
-      <li><a href="#">打字音效與震動設定</a></li>
-    </ul>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>內建主題介紹與切換</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>內建主題介紹與切換</h2>
+        <p>UrKeyboard 提供多套精心設計的內建主題，讓您的鍵盤更具個人風格。</p>
+        <h3>內建主題</h3>
+        <ul>
+          <li><b>極簡白</b>：清爽白色基調，適合日常使用</li>
+          <li><b>極簡黑</b>：深色背景，省電護眼</li>
+          <li><b>科技藍</b>：藍色調，現代科技感</li>
+          <li><b>自然綠</b>：清新綠色，舒緩視覺</li>
+          <li><b>粉櫻</b>：粉色調，溫柔浪漫</li>
+          <li><b>自動跟隨系統</b>：根據手機亮/暗色模式自動切換</li>
+        </ul>
+        <h3>切換主題</h3>
+        <ol>
+          <li>開啟 UrKeyboard 應用程式</li>
+          <li>進入「<b>設定</b>」→「<b>主題風格</b>」</li>
+          <li>點擊任一主題即可預覽並套用</li>
+        </ol>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>主題編輯器使用指南</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>主題編輯器使用指南</h2>
+        <p>主題編輯器讓您自由調整鍵盤的每個視覺細節，打造專屬的個人化外觀。</p>
+        <h3>進入主題編輯器</h3>
+        <ol>
+          <li>進入「<b>設定</b>」→「<b>主題風格</b>」</li>
+          <li>選擇一個主題作為基礎</li>
+          <li>點擊「<b>編輯</b>」或「<b>自訂</b>」按鈕</li>
+        </ol>
+        <h3>可調整的項目</h3>
+        <ul>
+          <li><b>背景色</b>：鍵盤整體背景顏色</li>
+          <li><b>按鍵色</b>：每個按鍵的顏色</li>
+          <li><b>文字色</b>：按鍵上文字的顏色</li>
+          <li><b>背景圖</b>：為鍵盤設定自訂背景圖片</li>
+          <li><b>字型</b>：按鍵文字的字體</li>
+        </ul>
+        <h3>儲存主題</h3>
+        <ul>
+          <li>編輯完成後點擊「<b>儲存</b>」</li>
+          <li>可為主題命名方便識別</li>
+          <li>儲存的主題會出現在主題選擇列表中</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>主題商店與社群主題</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>主題商店與社群主題</h2>
+        <p>主題商店收錄了社群設計師分享的精美主題，讓您的鍵盤與眾不同。</p>
+        <h3>瀏覽與下載主題</h3>
+        <ol>
+          <li>進入「<b>設定</b>」→「<b>主題風格</b>」→「<b>主題商店</b>」</li>
+          <li>瀏覽社群主題列表</li>
+          <li>點擊主題可預覽效果</li>
+          <li>點擊「<b>下載並套用</b>」即可使用</li>
+        </ol>
+        <h3>Pro 功能</h3>
+        <p>下載社群主題需要 <b>Pro 訂閱</b>。訂閱後可無限下載主題商店中的所有主題。</p>
+        <h3>分類瀏覽</h3>
+        <ul>
+          <li>可依「最新」、「最熱門」等條件篩選</li>
+          <li>支援標籤分類（如：深色系、繽紛、簡約等）</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>字型選擇</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>字型選擇</h2>
+        <p>為鍵盤按鍵選擇不同的字型，打造更具個性的輸入體驗。</p>
+        <h3>進入字型選擇器</h3>
+        <ol>
+          <li>進入「<b>設定</b>」→「<b>主題風格</b>」→「<b>主題編輯器</b>」</li>
+          <li>點擊「<b>字型</b>」選項</li>
+        </ol>
+        <h3>選擇字型</h3>
+        <ul>
+          <li>瀏覽可用字型列表</li>
+          <li>點擊任一字型可預覽效果</li>
+          <li>確認後點擊「<b>套用</b>」</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>打字音效與震動設定</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>打字音效與震動設定</h2>
+        <p>調整按鍵的音效與震動回饋，讓打字體驗更符合您的偏好。</p>
+        <h3>音效設定</h3>
+        <ol>
+          <li>進入「<b>設定</b>」→「<b>主題風格</b>」→「<b>主題編輯器</b>」</li>
+          <li>點擊「<b>音效</b>」選項</li>
+          <li>從列表中選擇喜歡的按鍵音效</li>
+          <li>點擊音效名稱可試聽</li>
+          <li>若不想要音效，選擇「<b>靜音</b>」</li>
+        </ol>
+        <h3>震動設定</h3>
+        <ol>
+          <li>進入「<b>設定</b>」→「<b>輸入行為</b>」</li>
+          <li>找到「<b>按鍵震動回饋</b>」開關</li>
+          <li>開啟或關閉震動回饋</li>
+        </ol>
+      </div></div>
+    </div>
   </div>
 
   <!-- Pro 功能 -->
   <div class="guide-category">
     <div class="guide-category-title">Pro 功能</div>
-    <ul class="guide-list">
-      <li><a href="#">雲端同步功能說明</a></li>
-      <li><a href="#">如何訂閱 Pro 版</a></li>
-      <li><a href="#">恢復 Pro 訂閱</a></li>
-    </ul>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>雲端同步功能說明</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>雲端同步功能說明</h2>
+        <p>Pro 訂閱用戶可透過 Google 帳號將設定、詞庫與學習記錄同步到雲端，換機時輕鬆還原。</p>
+        <h3>同步的項目</h3>
+        <ul>
+          <li><b>鍵盤設定</b>：主題、字型、音效等個人化設定</li>
+          <li><b>自訂詞庫</b>：您新增的所有詞條</li>
+          <li><b>學習記錄</b>：按鍵習慣的學習資料</li>
+        </ul>
+        <h3>啟用雲端同步</h3>
+        <ol>
+          <li>確認已訂閱 Pro 版</li>
+          <li>進入「<b>設定</b>」→「<b>會員與雲端服務</b>」→「<b>雲端同步</b>」</li>
+          <li>點擊「<b>使用 Google 帳號登入</b>」</li>
+          <li>選擇您的 Google 帳號並授權</li>
+          <li>等待首次同步完成</li>
+        </ol>
+        <h3>換機還原</h3>
+        <ol>
+          <li>在新手機安裝 UrKeyboard</li>
+          <li>訂閱或恢復 Pro 訂閱</li>
+          <li>以相同的 Google 帳號登入雲端同步</li>
+          <li>點擊「<b>從雲端還原</b>」</li>
+        </ol>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>如何訂閱 Pro 版</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>如何訂閱 Pro 版</h2>
+        <p>Pro 訂閱為加值服務，解鎖雲端同步、所有社群主題下載等進階功能。</p>
+        <h3>訂閱方案</h3>
+        <ul>
+          <li><b>月繳</b>：NT$30/月（隨時可取消）</li>
+          <li><b>年繳</b>：NT$240/年（省 33%）</li>
+        </ul>
+        <h3>訂閱步驟</h3>
+        <ol>
+          <li>進入「<b>設定</b>」→「<b>會員與雲端服務</b>」→「<b>Pro 訂閱</b>」</li>
+          <li>選擇訂閱方案（月繳或年繳）</li>
+          <li>點擊「<b>立即訂閱</b>」</li>
+          <li>透過 Google Play 完成付款</li>
+        </ol>
+        <h3>取消訂閱</h3>
+        <p>可透過 Google Play →「<b>訂閱管理</b>」隨時取消，取消後 Pro 功能在訂閱到期前仍可使用。</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>恢復 Pro 訂閱</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>恢復 Pro 訂閱</h2>
+        <p>換機或重新安裝後，若 Pro 訂閱未自動恢復，可手動觸發還原。</p>
+        <h3>操作步驟</h3>
+        <ol>
+          <li>進入「<b>設定</b>」→「<b>會員與雲端服務</b>」→「<b>Pro 訂閱</b>」</li>
+          <li>點擊「<b>恢復訂閱</b>」按鈕</li>
+          <li>系統會向 Google Play 查詢您的訂閱狀態</li>
+          <li>確認訂閱有效後，Pro 功能即刻解鎖</li>
+        </ol>
+        <h3>注意事項</h3>
+        <ul>
+          <li>需使用訂閱時所用的同一個 Google 帳號</li>
+          <li>需連接網路</li>
+          <li>若問題持續，請聯絡客服 simon@molioapp.com</li>
+        </ul>
+      </div></div>
+    </div>
   </div>
 
   <!-- 常見問題 -->
   <div class="guide-category">
     <div class="guide-category-title">常見問題</div>
-    <ul class="guide-list">
-      <li><a href="#">鍵盤不出現怎麼辦</a></li>
-      <li><a href="#">輸入的字和我打的不一樣</a></li>
-      <li><a href="#">如何備份我的設定</a></li>
-      <li><a href="#">更換手機後怎麼還原</a></li>
-      <li><a href="#">如何更新到最新版本</a></li>
-    </ul>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>鍵盤不出現怎麼辦</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>鍵盤不出現怎麼辦</h2>
+        <p>如果點擊輸入框後鍵盤沒有出現，請依以下步驟排查。</p>
+        <h3>步驟 1：確認已啟用</h3>
+        <ol>
+          <li>前往「<b>設定</b>」→「<b>一般管理</b>」→「<b>語言與輸入法</b>」→「<b>管理鍵盤</b>」</li>
+          <li>確認 UrKeyboard 的開關是<b>開啟</b>狀態</li>
+        </ol>
+        <h3>步驟 2：確認設為預設</h3>
+        <ol>
+          <li>前往「<b>設定</b>」→「<b>語言與輸入法</b>」→「<b>預設鍵盤</b>」</li>
+          <li>確認選擇了 UrKeyboard</li>
+        </ol>
+        <h3>步驟 3：嘗試切換輸入法</h3>
+        <ul>
+          <li>點擊輸入框，然後長按空白鍵或點擊右下角鍵盤圖示</li>
+          <li>從列表選擇 UrKeyboard</li>
+        </ul>
+        <h3>步驟 4：重新啟動</h3>
+        <ul>
+          <li>強制關閉 UrKeyboard 應用程式後重新開啟</li>
+          <li>若問題持續，嘗試重新啟動手機</li>
+        </ul>
+        <p>若以上步驟都無法解決，請聯絡我們：<b>simon@molioapp.com</b></p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>輸入的字和我打的不一樣</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>輸入的字和我打的不一樣</h2>
+        <p>如果候選字或輸出的文字不符合預期，可能有以下幾個原因。</p>
+        <h3>可能原因 1：字典不符合輸入法</h3>
+        <p>您載入的字典與您使用的輸入法不一致。例如使用注音輸入法，但載入的是行列字典。</p>
+        <p><b>解決方法：</b>前往「<b>設定</b>」→「<b>輸入法字典選擇</b>」，選擇符合您輸入習慣的字典。</p>
+        <h3>可能原因 2：字典未正確載入</h3>
+        <p>字典檔案損壞或格式不正確。</p>
+        <p><b>解決方法：</b>重新載入字典，或下載並重新匯入字典檔案。</p>
+        <h3>可能原因 3：連續輸入模式影響</h3>
+        <p>連續輸入模式下，UrKeyboard 會嘗試自動組詞，有時可能選擇非預期的詞。</p>
+        <p><b>解決方法：</b>可在「<b>設定</b>」→「<b>輸入行為</b>」中關閉「連續輸入」。</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>如何備份我的設定</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>如何備份我的設定</h2>
+        <h3>Pro 版：雲端同步（推薦）</h3>
+        <p>Pro 訂閱用戶可使用雲端同步功能，自動將設定備份到 Google 帳號中。</p>
+        <p>詳見「<b>雲端同步功能說明</b>」文章。</p>
+        <h3>一般版：本機備份</h3>
+        <ul>
+          <li><b>自訂詞庫</b>：目前需手動記錄詞條內容</li>
+          <li><b>自訂主題</b>：主題檔案存放於應用程式私有目錄，不易手動備份</li>
+          <li><b>字典檔案</b>：若使用自訂 .cin 檔，請備份該檔案</li>
+        </ul>
+        <p><b>建議：</b>訂閱 Pro 版以獲得完整的自動雲端備份功能。</p>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>更換手機後怎麼還原</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>更換手機後怎麼還原</h2>
+        <h3>使用雲端同步還原（Pro 版）</h3>
+        <ol>
+          <li>在新手機安裝 UrKeyboard</li>
+          <li>完成初次設定（啟用 → 預設 → 載入字典）</li>
+          <li>進入「<b>設定</b>」→「<b>Pro 訂閱</b>」，恢復 Pro 訂閱</li>
+          <li>進入「<b>雲端同步</b>」，以原 Google 帳號登入</li>
+          <li>點擊「<b>從雲端還原</b>」，等待完成</li>
+        </ol>
+        <h3>手動還原（一般版）</h3>
+        <ol>
+          <li>安裝 UrKeyboard 並完成初次設定</li>
+          <li>重新選擇您慣用的輸入法字典</li>
+          <li>重新設定主題、音效等個人化選項</li>
+          <li>將備份的自訂詞庫重新匯入</li>
+        </ol>
+      </div></div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <span>如何更新到最新版本</span><span class="accordion-icon">▾</span>
+      </button>
+      <div class="accordion-content"><div class="accordion-body">
+        <h2>如何更新到最新版本</h2>
+        <h3>自動更新</h3>
+        <p>若 Google Play 設定了自動更新，UrKeyboard 有新版本時會自動下載並安裝。建議保持自動更新開啟，以獲得最新功能與安全修正。</p>
+        <h3>手動檢查更新</h3>
+        <ol>
+          <li>開啟 <b>Google Play</b></li>
+          <li>搜尋「UrKeyboard」或前往您的應用程式庫</li>
+          <li>若有可用更新，會顯示「<b>更新</b>」按鈕</li>
+          <li>點擊更新即可</li>
+        </ol>
+        <h3>更新後</h3>
+        <ul>
+          <li>您的設定與詞庫不受影響</li>
+          <li>若有重大更新，建議重新載入字典以確保相容性</li>
+        </ul>
+      </div></div>
+    </div>
   </div>
 
-  <div style="text-align:center; margin-top: 24px;">
+  <div style="text-align:center; margin-top: 32px;">
     <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">
       在 APP 內查閱更詳細的圖文說明
     </p>
@@ -145,6 +830,13 @@
   </div>
   <p>© 2024 MolioApp. All rights reserved.</p>
 </footer>
+
+<script>
+  function toggleAccordion(btn) {
+    var item = btn.closest('.accordion-item');
+    item.classList.toggle('open');
+  }
+</script>
 
 </body>
 </html>
