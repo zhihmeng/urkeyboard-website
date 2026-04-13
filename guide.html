@@ -139,7 +139,43 @@
   </section>
 
   <section class="section container">
-    <div class="feature-grid" style="margin-bottom: 40px;">
+    <!-- 平台切換 -->
+    <div class="platform-tabs" style="margin-bottom: 24px;">
+      <button class="platform-tab active" onclick="switchPlatform('ios')" data-platform="ios">
+        <span class="platform-tab-icon"></span> iOS
+      </button>
+      <button class="platform-tab" onclick="switchPlatform('android')" data-platform="android">
+        <span class="platform-tab-icon">🤖</span> Android
+      </button>
+    </div>
+
+    <!-- iOS 步驟 -->
+    <div class="feature-grid platform-content active" data-platform="ios" style="margin-bottom: 40px;">
+      <div class="feature-card">
+        <div class="feature-icon">①</div>
+        <div>
+          <div class="feature-title">啟用輸入法</div>
+          <div class="feature-desc">設定 → 一般 → 鍵盤 → 新增鍵盤… → 加入 UrKeyboard 並開啟「允許完整取用」</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">②</div>
+        <div>
+          <div class="feature-title">切換鍵盤</div>
+          <div class="feature-desc">在任意輸入框長按左下角「🌐 地球」按鈕 → 選擇 UrKeyboard</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">③</div>
+        <div>
+          <div class="feature-title">載入字典</div>
+          <div class="feature-desc">開啟 UrKeyboard App → 輸入法字典 → 點選您慣用的輸入法</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Android 步驟 -->
+    <div class="feature-grid platform-content" data-platform="android" style="margin-bottom: 40px; display: none;">
       <div class="feature-card">
         <div class="feature-icon">①</div>
         <div>
@@ -1267,6 +1303,17 @@
     function toggleAccordion(btn) {
       var item = btn.closest('.accordion-item');
       item.classList.toggle('open');
+    }
+
+    function switchPlatform(platform) {
+      document.querySelectorAll('.platform-tab').forEach(function(tab) {
+        tab.classList.toggle('active', tab.dataset.platform === platform);
+      });
+      document.querySelectorAll('.platform-content').forEach(function(content) {
+        var isActive = content.dataset.platform === platform;
+        content.classList.toggle('active', isActive);
+        content.style.display = isActive ? '' : 'none';
+      });
     }
   </script>
 

@@ -576,6 +576,46 @@ a:hover {
   line-height: 1.6;
 }
 
+/* ── 平台切換 Tab ── */
+.platform-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.platform-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--divider);
+  background: var(--surface);
+  color: var(--text-secondary);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  font-family: inherit;
+}
+
+.platform-tab:hover {
+  border-color: var(--primary-light);
+  color: var(--text-primary);
+}
+
+.platform-tab.active {
+  background: var(--primary-dark);
+  color: #fff;
+  border-color: var(--primary-dark);
+  box-shadow: 0 4px 12px rgba(69, 90, 100, 0.25);
+}
+
+.platform-tab-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
 /* ── 說明文章列表 ── */
 .guide-category {
   margin-bottom: 28px;
