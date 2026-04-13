@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" x-data="{ theme: localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') }" x-init="$watch('theme', val => { localStorage.setItem('theme', val); document.documentElement.setAttribute('data-theme', val); })" :data-theme="theme">
 
 <head>
   <meta charset="UTF-8">
@@ -12,6 +12,13 @@
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@400;500;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 
 <body>
@@ -23,6 +30,10 @@
       <a href="index.html" class="active">首頁</a>
       <a href="guide.html">說明</a>
       <a href="privacy-policy.html">隱私</a>
+      <button class="theme-toggle" @click="theme = theme === 'dark' ? 'light' : 'dark'" aria-label="切換深淺色模式">
+        <span x-show="theme === 'light'" style="display: none;">🌙</span>
+        <span x-show="theme === 'dark'" style="display: none;">☀️</span>
+      </button>
     </div>
   </nav>
 
@@ -124,27 +135,18 @@
     <h2 class="section-title">豐富的主題選擇</h2>
     <p class="section-subtitle">4 套精心設計的內建主題家族，每套皆支援自動跟隨系統、淺色、深色三段式切換，也可使用主題編輯器打造專屬外觀</p>
 
-    <div class="theme-scroll">
-      <div class="theme-item">
-        <img src="images/theme_white.jpg" alt="極簡白主題">
-        <p class="theme-label">極簡白</p>
+    <div x-data="{ currentTheme: 'images/theme_white.jpg' }" style="display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 20px 0;">
+      <div style="position: relative; max-width: 240px; width: 100%;">
+        <img :src="currentTheme" alt="主題預覽" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow-lg); transition: all 0.3s ease;">
       </div>
-      <div class="theme-item">
-        <img src="images/theme_black.jpg" alt="極簡黑主題">
-        <p class="theme-label">極簡黑</p>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; background: var(--surface); padding: 12px 24px; border-radius: 30px; box-shadow: var(--shadow-sm); border: 1px solid var(--border);">
+        <button @click="currentTheme='images/theme_white.jpg'" class="theme-btn" style="background: #F0F0F0;" title="極簡白"></button>
+        <button @click="currentTheme='images/theme_black.jpg'" class="theme-btn" style="background: #2C2C2C;" title="極簡黑"></button>
+        <button @click="currentTheme='images/theme_blue.jpg'" class="theme-btn" style="background: #00BCD4;" title="科技藍"></button>
+        <button @click="currentTheme='images/theme_green.jpg'" class="theme-btn" style="background: #4CAF50;" title="自然綠"></button>
+        <button @click="currentTheme='images/theme_pink.jpg'" class="theme-btn" style="background: #F48FB1;" title="粉櫻"></button>
       </div>
-      <div class="theme-item">
-        <img src="images/theme_blue.jpg" alt="科技藍主題">
-        <p class="theme-label">科技藍</p>
-      </div>
-      <div class="theme-item">
-        <img src="images/theme_green.jpg" alt="自然綠主題">
-        <p class="theme-label">自然綠</p>
-      </div>
-      <div class="theme-item">
-        <img src="images/theme_pink.jpg" alt="粉櫻主題">
-        <p class="theme-label">粉櫻</p>
-      </div>
+      <p style="font-size: 14px; color: var(--text-secondary); margin-top: -12px;">點擊色塊即時預覽不同主題</p>
     </div>
   </section>
 

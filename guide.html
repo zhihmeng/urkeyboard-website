@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" x-data="{ theme: localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') }" x-init="$watch('theme', val => { localStorage.setItem('theme', val); document.documentElement.setAttribute('data-theme', val); })" :data-theme="theme">
 
 <head>
   <meta charset="UTF-8">
@@ -12,6 +12,13 @@
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Outfit:wght@400;500;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <style>
     .accordion-item {
       border-bottom: 1px solid var(--border);
@@ -129,6 +136,10 @@
       <a href="index.html">首頁</a>
       <a href="guide.html" class="active">說明</a>
       <a href="privacy-policy.html">隱私</a>
+      <button class="theme-toggle" @click="theme = theme === 'dark' ? 'light' : 'dark'" aria-label="切換深淺色模式">
+        <span x-show="theme === 'light'" style="display: none;">🌙</span>
+        <span x-show="theme === 'dark'" style="display: none;">☀️</span>
+      </button>
     </div>
   </nav>
 
@@ -210,9 +221,48 @@
     <h2 class="section-title">完整說明文章</h2>
     <p class="section-subtitle">點擊標題展開詳細說明</p>
 
-    <!-- ====== 基本設定（6 篇）====== -->
-    <div class="guide-category">
-      <div class="guide-category-title">基本設定</div>
+    <script>
+      function searchGuide(query) {
+        const q = query.toLowerCase();
+        document.querySelectorAll('.accordion-item').forEach(item => {
+          if (!q || item.innerText.toLowerCase().includes(q)) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        document.querySelectorAll('.guide-category').forEach(cat => {
+          const hasVisible = Array.from(cat.querySelectorAll('.accordion-item')).some(i => i.style.display !== 'none');
+          cat.style.display = hasVisible ? '' : 'none';
+        });
+      }
+    </script>
+
+    <!-- 文章目錄與內容容器 -->
+    <div x-data="{ searchQuery: '' }" style="display: flex; gap: 32px; align-items: flex-start; position: relative;">
+      
+      <!-- 左側導覽列 (Desktop Only) -->
+      <aside class="guide-sidebar" style="position: sticky; top: 100px; width: 220px; flex-shrink: 0;">
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">文章分類</h3>
+        <nav style="display: flex; flex-direction: column; gap: 12px;">
+          <a href="#cat-basic" style="font-size: 15px; color: var(--text-secondary); transition: color 0.2s;">基本設定</a>
+          <a href="#cat-input" style="font-size: 15px; color: var(--text-secondary); transition: color 0.2s;">輸入方式</a>
+          <a href="#cat-tools" style="font-size: 15px; color: var(--text-secondary); transition: color 0.2s;">效率工具</a>
+          <a href="#cat-theme" style="font-size: 15px; color: var(--text-secondary); transition: color 0.2s;">外觀主題</a>
+          <a href="#cat-pro" style="font-size: 15px; color: var(--text-secondary); transition: color 0.2s;">Pro 版訂閱功能</a>
+          <a href="#cat-faq" style="font-size: 15px; color: var(--text-secondary); transition: color 0.2s;">常見問題</a>
+        </nav>
+      </aside>
+
+      <!-- 右側主要內容 -->
+      <div style="flex: 1; min-width: 0;">
+        <div style="margin-bottom: 24px;">
+          <input type="text" x-model="searchQuery" @input="searchGuide(searchQuery)" placeholder="🔍 搜尋問題（例如：雲端同步、顏文字）" style="width: 100%; padding: 14px 20px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); color: var(--text-primary); font-size: 16px; outline: none; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
+        </div>
+
+        <!-- ====== 基本設定（6 篇）====== -->
+        <div id="cat-basic" class="guide-category" style="scroll-margin-top: 100px;">
+          <div class="guide-category-title">基本設定</div>
 
       <!-- 如何啟用 UrKeyboard -->
       <div class="accordion-item">
@@ -391,7 +441,7 @@
     </div>
 
     <!-- ====== 輸入方式（8 篇）====== -->
-    <div class="guide-category">
+    <div id="cat-input" class="guide-category" style="scroll-margin-top: 100px;">
       <div class="guide-category-title">輸入方式</div>
 
       <!-- 中／英／符輸入方式切換 -->
@@ -618,7 +668,7 @@
     </div>
 
     <!-- ====== 效率工具（5 篇）====== -->
-    <div class="guide-category">
+    <div id="cat-tools" class="guide-category" style="scroll-margin-top: 100px;">
       <div class="guide-category-title">效率工具</div>
 
       <!-- 剪貼簿歷史功能 -->
@@ -808,7 +858,7 @@
     </div>
 
     <!-- ====== 外觀主題（3 篇）====== -->
-    <div class="guide-category">
+    <div id="cat-theme" class="guide-category" style="scroll-margin-top: 100px;">
       <div class="guide-category-title">外觀主題</div>
 
       <!-- 內建主題介紹與切換 -->
@@ -941,7 +991,7 @@
     </div>
 
     <!-- ====== Pro 版訂閱功能（4 篇）====== -->
-    <div class="guide-category">
+    <div id="cat-pro" class="guide-category" style="scroll-margin-top: 100px;">
       <div class="guide-category-title">Pro 版訂閱功能</div>
 
       <!-- Pro 版功能總覽 -->
@@ -1071,7 +1121,7 @@
     </div>
 
     <!-- ====== 常見問題（7 篇）====== -->
-    <div class="guide-category">
+    <div id="cat-faq" class="guide-category" style="scroll-margin-top: 100px;">
       <div class="guide-category-title">常見問題</div>
 
       <!-- 鍵盤不出現怎麼辦 -->
@@ -1282,7 +1332,9 @@
         </div>
       </div>
 
-    </div>
+    </div> <!-- End of Categories Column -->
+    </div> <!-- End of Content Flex Wrapper -->
+
     <div style="text-align:center; margin-top: 48px;">
       <p style="color: var(--text-secondary); font-size: 15px; margin-bottom: 20px;">
         在 App 內查閱更詳細的圖文說明

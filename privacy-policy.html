@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" x-data="{ theme: localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') }" x-init="$watch('theme', val => { localStorage.setItem('theme', val); document.documentElement.setAttribute('data-theme', val); })" :data-theme="theme">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>隱私權政策 — UrKeyboard</title>
   <meta name="description" content="UrKeyboard Android 輸入法隱私權政策">
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
 
@@ -15,6 +22,10 @@
     <a href="index.html">首頁</a>
     <a href="guide.html">說明</a>
     <a href="privacy-policy.html" class="active">隱私</a>
+    <button class="theme-toggle" @click="theme = theme === 'dark' ? 'light' : 'dark'" aria-label="切換深淺色模式">
+      <span x-show="theme === 'light'" style="display: none;">🌙</span>
+      <span x-show="theme === 'dark'" style="display: none;">☀️</span>
+    </button>
   </div>
 </nav>
 
